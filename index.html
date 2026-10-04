@@ -1,0 +1,193 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Dr. Marilyn Winters · 1929 – 2026</title>
+  <meta name="description" content="Celebrating the life of Dr. Marilyn Winters. Memorial weekend details, photos, and ways to share memories.">
+  <meta property="og:title" content="Remembering Dr. Marilyn Winters">
+  <meta property="og:description" content="Memorial weekend details, photos, and ways to share memories.">
+  <meta property="og:image" content="images/hero.jpg">
+  <meta property="og:type" content="website">
+  <link rel="icon" href="images/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Nunito+Sans:ital,wght@0,300;0,400;0,600;1,300&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<a class="skip-link" href="#story">Skip to content</a>
+
+<header class="site-header" id="top">
+  <nav class="nav" aria-label="Main">
+    <a class="nav-brand" href="#top" data-short-name>Marilyn</a>
+    <button class="nav-toggle" aria-expanded="false" aria-controls="nav-menu" aria-label="Open menu">
+      <span></span><span></span><span></span>
+    </button>
+    <ul class="nav-menu" id="nav-menu">
+      <li><a href="#story">Her Story</a></li>
+      <li><a href="#schedule">Schedule</a></li>
+      <li><a href="#travel">Travel</a></li>
+      <li><a href="#gallery">Gallery</a></li>
+      <li><a href="#share">Share Photos</a></li>
+      <li><a href="#rsvp">RSVP</a></li>
+      <li><a class="nav-cta" href="#donate">Donate</a></li>
+    </ul>
+  </nav>
+</header>
+
+<main>
+
+  <!-- ============================================================ HERO -->
+  <section class="hero" id="hero">
+    <div class="hero-media" aria-hidden="true">
+      <img id="hero-img" alt="" decoding="async" fetchpriority="high">
+      <div class="hero-scrim"></div>
+    </div>
+    <div class="hero-content">
+      <p class="hero-kicker">In loving memory of</p>
+      <h1 class="hero-name" data-name>Dr. Marilyn Winters</h1>
+      <p class="hero-dates"><span data-born></span><span class="hero-sep" aria-hidden="true">·</span><span data-died></span></p>
+      <div class="ornament" aria-hidden="true"></div>
+      <p class="hero-tagline" data-tagline></p>
+      <p class="hero-weekend" id="hero-weekend"></p>
+      <div class="hero-actions">
+        <a class="btn btn-light" href="#schedule">Weekend Schedule</a>
+        <a class="btn btn-ghost-light" href="#rsvp">RSVP</a>
+      </div>
+    </div>
+    <a class="scroll-cue" href="#story" aria-label="Scroll down"><span></span></a>
+  </section>
+
+  <!-- ======================================================= HER STORY -->
+  <section class="section section-story" id="story">
+    <div class="container narrow">
+      <p class="eyebrow">Her Story</p>
+      <h2 class="section-title">A Life Well Lived</h2>
+      <div class="ornament" aria-hidden="true"></div>
+      <div class="story-layout">
+        <figure class="story-portrait" id="story-portrait" hidden>
+          <img id="portrait-img" alt="" loading="lazy" decoding="async">
+        </figure>
+        <div class="story-body prose" id="story-body"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================ QUOTE -->
+  <section class="quote-band" id="quote-band" hidden>
+    <div class="container narrow">
+      <blockquote class="pull-quote">
+        <p id="quote-text"></p>
+        <footer id="quote-by"></footer>
+      </blockquote>
+    </div>
+  </section>
+
+  <!-- ========================================================= SCHEDULE -->
+  <section class="section section-schedule" id="schedule">
+    <div class="container">
+      <p class="eyebrow">The Weekend</p>
+      <h2 class="section-title">Schedule of Events</h2>
+      <div class="ornament" aria-hidden="true"></div>
+      <p class="section-lede" id="schedule-lede"></p>
+      <ol class="timeline" id="events"></ol>
+      <p class="section-note" id="livestream-note" hidden></p>
+    </div>
+  </section>
+
+  <!-- =========================================================== TRAVEL -->
+  <section class="section section-travel" id="travel">
+    <div class="container">
+      <p class="eyebrow">Getting Here</p>
+      <h2 class="section-title">Travel &amp; Lodging</h2>
+      <div class="ornament" aria-hidden="true"></div>
+      <p class="section-lede" id="travel-intro"></p>
+      <div class="travel-grid">
+        <div class="travel-col">
+          <h3 class="travel-heading"><svg class="icon" aria-hidden="true" viewBox="0 0 24 24"><path d="M21 16v-2l-8-5V3.5a1.5 1.5 0 0 0-3 0V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5l8 2.5z"/></svg>Flying In</h3>
+          <ul class="plain-list" id="airports"></ul>
+          <h3 class="travel-heading"><svg class="icon" aria-hidden="true" viewBox="0 0 24 24"><path d="M18.9 6c-.2-.6-.8-1-1.4-1H6.5c-.6 0-1.2.4-1.4 1L3 12v8c0 .6.4 1 1 1h1c.6 0 1-.4 1-1v-1h12v1c0 .6.4 1 1 1h1c.6 0 1-.4 1-1v-8l-2.1-6zM6.5 16c-.8 0-1.5-.7-1.5-1.5S5.7 13 6.5 13s1.5.7 1.5 1.5S7.3 16 6.5 16zm11 0c-.8 0-1.5-.7-1.5-1.5s.7-1.5 1.5-1.5 1.5.7 1.5 1.5-.7 1.5-1.5 1.5zM5 11l1.5-4.5h11L19 11H5z"/></svg>Getting Around</h3>
+          <p class="prose" id="getting-around"></p>
+          <p class="prose" id="travel-extra" hidden></p>
+        </div>
+        <div class="travel-col">
+          <h3 class="travel-heading"><svg class="icon" aria-hidden="true" viewBox="0 0 24 24"><path d="M7 13c1.7 0 3-1.3 3-3S8.7 7 7 7s-3 1.3-3 3 1.3 3 3 3zm12-6h-8v7H3V5H1v15h2v-3h18v3h2v-9c0-2.2-1.8-4-4-4z"/></svg>Where to Stay</h3>
+          <ul class="hotel-list" id="hotels"></ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================================== GALLERY -->
+  <section class="section section-gallery" id="gallery">
+    <div class="container">
+      <p class="eyebrow">Remembering</p>
+      <h2 class="section-title">Photographs</h2>
+      <div class="ornament" aria-hidden="true"></div>
+      <div class="gallery-grid" id="gallery-grid"></div>
+    </div>
+  </section>
+
+  <!-- ===================================================== SHARE PHOTOS -->
+  <section class="section section-share" id="share">
+    <div class="container narrow center">
+      <p class="eyebrow">Add Your Memories</p>
+      <h2 class="section-title">Share Your Photos</h2>
+      <div class="ornament" aria-hidden="true"></div>
+      <p class="section-lede">We're gathering photos of <span data-short-name>Marilyn</span> from across the years. If you have pictures of her, from any era, big moments or small ones, please add them to our shared album so the whole family can enjoy them.</p>
+      <div class="cta-row" id="share-actions"></div>
+      <p class="section-note" id="memories-note" hidden></p>
+    </div>
+  </section>
+
+  <!-- ============================================================= RSVP -->
+  <section class="section section-rsvp" id="rsvp">
+    <div class="container narrow center">
+      <p class="eyebrow">Will You Join Us?</p>
+      <h2 class="section-title">RSVP</h2>
+      <div class="ornament" aria-hidden="true"></div>
+      <p class="section-lede">Please let us know if you'll be joining us for the weekend so we can plan for seating and meals.<span id="rsvp-by"></span></p>
+      <div id="rsvp-body"></div>
+    </div>
+  </section>
+
+  <!-- =========================================================== DONATE -->
+  <section class="section section-donate" id="donate">
+    <div class="container narrow center">
+      <p class="eyebrow" id="donate-eyebrow">In lieu of flowers</p>
+      <h2 class="section-title">Memorial Fund</h2>
+      <div class="ornament" aria-hidden="true"></div>
+      <p class="section-lede" id="donate-text"></p>
+      <div class="cta-row" id="donate-actions"></div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="container center">
+    <div class="ornament ornament-light" aria-hidden="true"></div>
+    <p class="footer-name" data-name>Dr. Marilyn Winters</p>
+    <p class="footer-dates"><span data-born></span> – <span data-died></span></p>
+    <p class="footer-contact" id="footer-contact"></p>
+    <p class="footer-fine">Made with love by her family.</p>
+  </div>
+</footer>
+
+<!-- Lightbox -->
+<div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Photo viewer" hidden>
+  <button class="lb-close" aria-label="Close">&times;</button>
+  <button class="lb-prev" aria-label="Previous photo">&#8249;</button>
+  <figure class="lb-figure">
+    <img id="lb-img" alt="">
+    <figcaption id="lb-caption"></figcaption>
+  </figure>
+  <button class="lb-next" aria-label="Next photo">&#8250;</button>
+</div>
+
+<script src="content.js"></script>
+<script src="site.js"></script>
+</body>
+</html>

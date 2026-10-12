@@ -113,6 +113,7 @@
     const tzp = tz ? `;TZID=${tz}` : "";
     const now = new Date();
     const stamp = `${now.getUTCFullYear()}${pad(now.getUTCMonth() + 1)}${pad(now.getUTCDate())}T${pad(now.getUTCHours())}${pad(now.getUTCMinutes())}00Z`;
+    // TODO(bug): "\;" is just ";" in JS, so semicolons are not escaped. Should be "\\;".
     const fold = (s) => s.replace(/\\/g, "\\\\").replace(/\n/g, "\\n").replace(/,/g, "\\,").replace(/;/g, "\;");
     const lines = [
       "BEGIN:VCALENDAR", "VERSION:2.0", "PRODID:-//Memorial Site//EN", "CALSCALE:GREGORIAN",
@@ -151,14 +152,14 @@
           <div class="event-date" aria-label="${d ? esc(`${DOW[d.getDay()]}, ${MONTHS[d.getMonth()]} ${d.getDate()}`) : ""}">${dateHtml}</div>
           <article class="event-card">
             <h3>${esc(e.title)}</h3>
-            <p class="event-time">${esc(timeRange(e.start, e.end))}</p>
+            <p class="event-time">${esc(timeRange(e.start, e.end) || "Time to be announced")}</p>
             ${e.venue ? `<p class="event-venue">${esc(e.venue)}</p>` : ""}
             ${e.address ? `<p class="event-address">${esc(e.address)}</p>` : ""}
             ${e.description ? `<p class="event-desc">${esc(e.description)}</p>` : ""}
             ${meta ? `<div class="event-meta">${meta}</div>` : ""}
             <div class="event-actions">
               ${e.address ? `<a class="btn btn-outline btn-sm" target="_blank" rel="noopener" href="${mapLink(e.address)}"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2C8.1 2 5 5.1 5 9c0 5.3 7 13 7 13s7-7.7 7-13c0-3.9-3.1-7-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z"/></svg>Map</a>` : ""}
-              ${d ? `<a class="btn btn-outline btn-sm" target="_blank" rel="noopener" href="${gcalLink(e)}">Google Calendar</a>
+              ${d && fmtTime(e.start) ? `<a class="btn btn-outline btn-sm" target="_blank" rel="noopener" href="${gcalLink(e)}">Google Calendar</a>
               <button class="btn btn-outline btn-sm" type="button" data-ics="${i}">Apple / Outlook</button>` : ""}
             </div>
           </article>

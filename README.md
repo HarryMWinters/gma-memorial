@@ -3,6 +3,8 @@
 A static memorial website for Marilyn's memorial weekend: her story, the schedule,
 travel and lodging, photos, a shared photo album, RSVP, and a memorial fund.
 
+**Open work is tracked in [`TODO.md`](TODO.md).**
+
 No build step, no dependencies. Open `index.html` in a browser and it works.
 
 ## Editing the site

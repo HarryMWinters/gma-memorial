@@ -32,7 +32,6 @@ inline comment) when it's done.
       then File > Share > Publish to web > that tab only > CSV, and paste the URL into `guestListCsv`.
       Only names + party size are public; emails and messages stay private.
 - [ ] Google Photos shared album (`googlePhotosAlbum`).
-- [ ] UUCM online donation link (`gofundme` key; any donation URL works).
 - [ ] Optional: memories form (`memoriesForm`), livestream (`livestream`).
 
 ## Travel
@@ -64,3 +63,5 @@ inline comment) when it's done.
 - [x] SMF drive time ~1h10 (family-confirmed). RNO added as alternative (~1.5 h, estimate).
 - [x] Fixed `.ics` semicolon escaping.
 - [x] `og:image` / `og:url` now absolute (GitHub Pages URL).
+- [x] UUCM donation link wired to the "Give in Her Memory" button (`links.donate`).
+- [x] Service address confirmed: 12582 Squirrel Creek Rd, Grass Valley, CA 95945.

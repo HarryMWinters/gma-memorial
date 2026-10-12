@@ -333,8 +333,9 @@
   const D = S.donate || {};
   if (has(D.heading)) $("#donate-eyebrow").textContent = D.heading;
   $("#donate-text").textContent = D.text || "";
-  $("#donate-actions").innerHTML = linkOK(L.gofundme)
-    ? `<a class="btn btn-gold" href="${esc(L.gofundme)}" target="_blank" rel="noopener">Give in Her Memory</a>`
+  const donateURL = L.donate || L.gofundme; // "gofundme" kept as a legacy key
+  $("#donate-actions").innerHTML = linkOK(donateURL)
+    ? `<a class="btn btn-gold" href="${esc(donateURL)}" target="_blank" rel="noopener">Give in Her Memory</a>`
     : `<span class="btn btn-gold is-disabled" aria-disabled="true">Donation Link Coming Soon</span>`;
 
   /* ------------------------------------------------------ footer -- */

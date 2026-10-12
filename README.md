@@ -18,7 +18,7 @@ Everything you'd want to change is in **`content.js`**:
 | Hotels, airports, parking             | `travel`                              |
 | Add photos to the gallery             | drop files in `images/`, list in `gallery` |
 | Google Photos album link              | `links.googlePhotosAlbum`             |
-| GoFundMe link                         | `links.gofundme`                      |
+| Donation link                         | `links.donate`                        |
 | RSVP Google Form                      | `links.rsvpForm` (and optionally `links.rsvpFormEmbed`) |
 | Livestream link                       | `links.livestream`                    |
 | Contact info in the footer            | `contact`                             |

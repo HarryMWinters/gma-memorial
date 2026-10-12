@@ -107,7 +107,7 @@ window.SITE = {
   links: {
     // TODO: fill in all links below (RSVP uses Google Forms for now).
     googlePhotosAlbum: "",   // shared album where guests can add photos
-    gofundme: "",            // donation page. TODO: UUCM's online giving URL (button reads "Give in Her Memory")
+    donate: "https://secure.myvanco.com/L-ZFZ1/campaign/C-1408Z", // UUCM online giving (button reads "Give in Her Memory")
     rsvpForm: "",            // Google Form URL (the "Send" > link one)
     rsvpFormEmbed: "",       // optional: Google Form "Embed HTML" src URL to show the form inline
     memoriesForm: "",        // optional: a second form for written memories

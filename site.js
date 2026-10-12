@@ -113,8 +113,7 @@
     const tzp = tz ? `;TZID=${tz}` : "";
     const now = new Date();
     const stamp = `${now.getUTCFullYear()}${pad(now.getUTCMonth() + 1)}${pad(now.getUTCDate())}T${pad(now.getUTCHours())}${pad(now.getUTCMinutes())}00Z`;
-    // TODO(bug): "\;" is just ";" in JS, so semicolons are not escaped. Should be "\\;".
-    const fold = (s) => s.replace(/\\/g, "\\\\").replace(/\n/g, "\\n").replace(/,/g, "\\,").replace(/;/g, "\;");
+    const fold = (s) => s.replace(/\\/g, "\\\\").replace(/\n/g, "\\n").replace(/,/g, "\\,").replace(/;/g, "\\;");
     const lines = [
       "BEGIN:VCALENDAR", "VERSION:2.0", "PRODID:-//Memorial Site//EN", "CALSCALE:GREGORIAN",
       "BEGIN:VEVENT",

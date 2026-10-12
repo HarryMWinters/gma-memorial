@@ -55,12 +55,12 @@ window.SITE = {
 
   // ------------------------------------------------- Travel & lodging ---
   travel: {
-    intro: "For those travelling in for the weekend, here is everything you need to know.",
+    intro: "For those traveling in for the weekend, here is everything you need to know.",
     airports: [
-      { name: "Sacramento International Airport (SMF)", detail: "The nearest major airport, about 1 hour 10 minutes' drive from the service." },
-      { name: "Reno-Tahoe International Airport (RNO)", detail: "An alternative, roughly 1.5 hours' drive over I-80." },
+      { name: "Sacramento International Airport (SMF)", detail: "The nearest major airport, about a 1 hour 10 minutes' drive from the service." },
+      { name: "Reno-Tahoe International Airport (RNO)", detail: "An alternative, roughly a 2-hour drive over I-80." },
     ],
-    // TODO: hotel phone numbers, booking URLs, and any group rate / room block.
+    // TODO: hotel phone numbers, booking URLs, and any group rate/room block.
     hotels: [
       {
         name: "Gold Miners Inn Grass Valley, an Ascend Collection Hotel",

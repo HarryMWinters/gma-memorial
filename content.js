@@ -57,8 +57,8 @@ window.SITE = {
   travel: {
     intro: "For those travelling in for the weekend, here is everything you need to know.",
     airports: [
-      // TODO: verify drive time and consider adding Reno-Tahoe (RNO) as an alternative.
-      { name: "Sacramento International Airport (SMF)", detail: "The nearest major airport, roughly 1.5 hours' drive from Grass Valley." },
+      { name: "Sacramento International Airport (SMF)", detail: "The nearest major airport, about 1 hour 10 minutes' drive from the service." },
+      { name: "Reno-Tahoe International Airport (RNO)", detail: "An alternative, roughly 1.5 hours' drive over I-80." },
     ],
     // TODO: hotel phone numbers, booking URLs, and any group rate / room block.
     hotels: [
@@ -103,7 +103,7 @@ window.SITE = {
   links: {
     // TODO: fill in all links below (RSVP uses Google Forms for now).
     googlePhotosAlbum: "",   // shared album where guests can add photos
-    gofundme: "",            // donation page
+    gofundme: "",            // donation page. TODO: UUCM's online giving URL (button reads "Give in Her Memory")
     rsvpForm: "",            // Google Form URL (the "Send" > link one)
     rsvpFormEmbed: "",       // optional: Google Form "Embed HTML" src URL to show the form inline
     memoriesForm: "",        // optional: a second form for written memories
@@ -114,10 +114,9 @@ window.SITE = {
   rsvpBy: "January 31, 2027", // 90 days before May 1, 2027
 
   // Donation framing. If she had a preferred charity, mention it here.
-  // TODO: name the charity / confirm GoFundMe as the donation route.
   donate: {
     heading: "In lieu of flowers",
-    text: "The family has set up a memorial fund in Marilyn's honor. Contributions will support causes she cared about deeply.",
+    text: "The family asks that donations in Marilyn's memory be made to the Unitarian Universalist Community of the Mountains (UUCM) in Grass Valley.",
   },
 
   // ------------------------------------------------------------ Contact ---

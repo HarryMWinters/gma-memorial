@@ -98,6 +98,7 @@ window.SITE = {
   gallery: [
     { src: "images/lake-tahoe.jpg", caption: "Modelling her Lake Tahoe sweats, a true style moment" },
     { src: "images/christmas.jpg", caption: "Marilyn and Harry at Christmas" },
+    { src: "images/story-time.jpg", caption: "Story time, with the dog listening in" },
     { src: "images/family-living-room.jpg", caption: "Silly faces with the grandkids. She held her own." },
   ],
 

@@ -12,7 +12,7 @@ window.SITE = {
     shortName: "Marilyn",          // used in sentences like "Celebrating Marilyn"
     born: "January 29, 1929",
     died: "May 20, 2026",
-    tagline: "A life well lived, a legacy well loved.",
+    tagline: "Professor, wife, mother, grandmother, and friend.",
     heroImage: "images/hero.jpg",   // drop a photo here (landscape works best)
     portraitImage: "images/portrait.jpg", // optional portrait for Her Story
   },
@@ -26,8 +26,10 @@ window.SITE = {
 
   // Optional short quotes shown as pull-quotes between sections.
   quotes: [
-    // TODO: confirm quote and attribution (by: is empty).
-    { text: "Those we love don't go away; they walk beside us every day.", by: "" },
+    {
+      text: "If ever there is tomorrow when we're not together, there is something you must always remember: you are braver than you believe, stronger than you seem, and smarter than you think. But the most important thing is, even if we're apart, I'll always be with you.",
+      by: "Christopher Robin to Pooh",
+    },
   ],
 
   // --------------------------------------------------------- Schedule ---
@@ -46,7 +48,7 @@ window.SITE = {
       venue: "Unitarian Universalist Community of the Mountains",
       address: "12582 Squirrel Creek Rd, Grass Valley, CA 95945",
       description: "A service celebrating Marilyn's life.", // TODO: reception/luncheon after?
-      dressCode: "", // TODO: attire guidance, if any
+      dressCode: "Smart casual, though we suspect she'd quietly hand out marks for a great outfit.",
       notes: "Date and time to be confirmed.",
     },
     // TODO: add any other weekend events (gathering the night before, family
@@ -84,8 +86,8 @@ window.SITE = {
         url: "",
       },
     ],
-    // TODO: confirm parking at the venue and whether rideshare is reliable in the area.
-    gettingAround: "A car is recommended for getting between Sacramento and Grass Valley.",
+    // TODO: confirm whether rideshare is reliable in the area.
+    gettingAround: "A car is recommended for getting between Sacramento and Grass Valley. Parking is available at the church.",
     extra: "", // TODO (optional): weather in early May, local tips
   },
 
@@ -94,8 +96,9 @@ window.SITE = {
   // Tip: keep images under ~500 KB each so the page stays fast.
   // TODO: add photos (also images/hero.jpg and images/portrait.jpg).
   gallery: [
-    // { src: "images/1950-wedding.jpg", caption: "Marilyn and Grandpa, 1950" },
-    // { src: "images/graduation.jpg",   caption: "Medical school graduation" },
+    { src: "images/lake-tahoe.jpg", caption: "Modelling her Lake Tahoe sweats, a true style moment" },
+    { src: "images/christmas.jpg", caption: "Marilyn and Harry at Christmas" },
+    { src: "images/family-living-room.jpg", caption: "Silly faces with the grandkids. She held her own." },
   ],
 
   // ------------------------------------------------------------- Links ---

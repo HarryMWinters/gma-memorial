@@ -16,11 +16,10 @@ inline comment) when it's done.
 ## Content
 
 - [ ] Obituary / Her Story (`story`).
-- [ ] Photos: `images/hero.jpg` (also used for link previews), `images/portrait.jpg`, and the `gallery` list.
-- [ ] Quote: confirm the text and add an attribution (`quotes[0].by`).
-- [ ] Event description: will there be a reception or luncheon after the service? Attire guidance?
+- [ ] Photos: hero, portrait and 3 gallery photos added. Add captions and more gallery photos.
+- [ ] Event description: will there be a reception or luncheon after the service?
 - [ ] Other weekend events (gathering the night before, family brunch, etc.), if any.
-- [ ] Family contact email and phone for the footer (`contact`).
+- [ ] Family contact email for the footer (`contact.email`); email only, no phone. Isaac may have set one up.
 
 ## Links (`links` in `content.js`)
 
@@ -33,7 +32,7 @@ inline comment) when it's done.
 
 - [ ] Hotel phone numbers and booking URLs (left blank so we don't publish unverified numbers).
 - [ ] Group rate / room block, if the family sets one up.
-- [ ] Confirm parking at the venue and whether rideshare is reliable locally.
+- [ ] Confirm whether rideshare is reliable locally.
 - [ ] Optional `travel.extra`: early-May weather, local tips.
 
 ## Technical
@@ -43,6 +42,11 @@ inline comment) when it's done.
 - [ ] Optional: a single "add the whole weekend to calendar" `.ics` once there are multiple events.
 
 ## Done
+
+- [x] Tagline: "Professor, wife, mother, grandmother, and friend."
+- [x] Quote: Pooh "braver than you believe", credited to Christopher Robin to Pooh.
+- [x] Dress code: smart casual.
+- [x] Parking available at the church.
 
 - [x] Event date set to 2027-05-01 (pending validation), timezone `America/Los_Angeles`.
 - [x] Venue: Unitarian Universalist Community of the Mountains, 12582 Squirrel Creek Rd, Grass Valley, CA 95945.

@@ -21,6 +21,7 @@ Everything you'd want to change is in **`content.js`**:
 | Donation link                         | `links.donate`                        |
 | RSVP Google Form                      | `links.rsvpForm` (and optionally `links.rsvpFormEmbed`) |
 | Livestream link                       | `links.livestream`                    |
+| Memory form (backend URL, spam key)   | `memories` (setup: `worker/README.md`) |
 | Contact info in the footer            | `contact`                             |
 
 Anything left as `""` or `[]` shows a tasteful "coming soon" placeholder,

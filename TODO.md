@@ -32,7 +32,20 @@ inline comment) when it's done.
       then File > Share > Publish to web > that tab only > CSV, and paste the URL into `guestListCsv`.
       Only names + party size are public; emails and messages stay private.
 - [ ] Google Photos shared album (`googlePhotosAlbum`).
-- [ ] Optional: memories form (`memoriesForm`), livestream (`livestream`).
+- [ ] Optional: livestream (`livestream`).
+
+## Memories form (`worker/`, `memories` in `content.js`)
+
+Code is done and tested with Google mocked. Remaining is setup. Follow `worker/README.md`:
+
+- [ ] Google Cloud project + OAuth client (Desktop app). Consent screen **In production** (Testing mode expires the token in 7 days).
+- [ ] Run `npm run google-setup` with the family Google account; put `DRIVE_FOLDER_ID` / `SHEET_ID` in `worker/wrangler.toml`.
+- [ ] Cloudflare Turnstile widget for `harrymwinters.github.io`.
+- [ ] `wrangler secret put` x4, `wrangler deploy`.
+- [ ] Set `memories.endpoint` and `memories.turnstileSiteKey` in `content.js`.
+- [ ] **Live test with a real photo and a phone video.** The browser-to-Drive upload (resumable session + CORS) can't be tested without real Google.
+- [ ] Optional: decide whether the Google Photos shared album is still needed now that the form takes photos.
+- [ ] Optional, later: show selected memories on the site (needs a family review step first).
 
 ## Travel
 
@@ -65,3 +78,4 @@ inline comment) when it's done.
 - [x] `og:image` / `og:url` now absolute (GitHub Pages URL).
 - [x] UUCM donation link wired to the "Give in Her Memory" button (`links.donate`).
 - [x] Service address confirmed: 12582 Squirrel Creek Rd, Grass Valley, CA 95945.
+- [x] Memories form built: custom form on the site + Cloudflare Worker -> Google Sheet + Drive folder (no guest sign-in).

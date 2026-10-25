@@ -1,0 +1,15 @@
+name = "gma-memorial-memories"
+main = "src/index.js"
+compatibility_date = "2025-06-01"
+
+[vars]
+# Sites allowed to submit (comma-separated, no trailing slash).
+ALLOWED_ORIGINS = "https://harrymwinters.github.io,http://localhost:8000"
+# Printed by `npm run google-setup`. TODO: fill these in.
+DRIVE_FOLDER_ID = ""
+SHEET_ID = ""
+MAX_FILES = "10"
+MAX_FILE_MB = "1024"
+
+# Secrets (set with `npx wrangler secret put NAME`, never commit them):
+#   GOOGLE_CLIENT_ID, GOOGLE_CLIENT_SECRET, GOOGLE_REFRESH_TOKEN, TURNSTILE_SECRET

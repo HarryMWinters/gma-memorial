@@ -281,6 +281,54 @@
     rsvp.innerHTML = `<div class="cta-row"><span class="btn btn-primary is-disabled" aria-disabled="true">RSVP — Opening Soon</span></div>`;
   }
 
+  /* -------------------------------------------------- guest list -- */
+  // Reads a Google Sheet tab published to the web as CSV (links.guestListCsv).
+  // Column A = name(s), optional column B = number in party. Row 1 is a header.
+  if (linkOK(L.guestListCsv)) {
+    fetch(L.guestListCsv, { cache: "no-store" })
+      .then((r) => (r.ok ? r.text() : Promise.reject(r.status)))
+      .then((text) => {
+        const rows = parseCSV(text).slice(1);
+        const seen = new Set();
+        const guests = [];
+        rows.forEach((r) => {
+          const name = String(r[0] || "").trim();
+          const key = name.toLowerCase();
+          if (!name || seen.has(key)) return;
+          seen.add(key);
+          const n = parseInt(r[1], 10);
+          guests.push({ name, count: n > 0 ? n : 1 });
+        });
+        if (!guests.length) return;
+        guests.sort((a, b) => a.name.localeCompare(b.name));
+        const total = guests.reduce((t, g) => t + g.count, 0);
+        $("#guest-list-count").textContent = `${total} ${total === 1 ? "person has" : "people have"} said they'll be there.`;
+        $("#guest-list-names").innerHTML = guests.map((g) =>
+          `<li>${esc(g.name)}${g.count > 1 ? ` <span class="guest-plus">+${g.count - 1}</span>` : ""}</li>`).join("");
+        $("#guest-list").hidden = false;
+      })
+      .catch(() => {});
+  }
+
+  function parseCSV(text) {
+    const rows = []; let row = [], field = "", q = false;
+    for (let i = 0; i < text.length; i++) {
+      const c = text[i];
+      if (q) {
+        if (c === '"' && text[i + 1] === '"') { field += '"'; i++; }
+        else if (c === '"') q = false;
+        else field += c;
+      } else if (c === '"') q = true;
+      else if (c === ",") { row.push(field); field = ""; }
+      else if (c === "\n" || c === "\r") {
+        if (c === "\r" && text[i + 1] === "\n") i++;
+        row.push(field); rows.push(row); row = []; field = "";
+      } else field += c;
+    }
+    if (field || row.length) { row.push(field); rows.push(row); }
+    return rows;
+  }
+
   /* ------------------------------------------------------ donate -- */
   const D = S.donate || {};
   if (has(D.heading)) $("#donate-eyebrow").textContent = D.heading;

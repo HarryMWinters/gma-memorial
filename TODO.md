@@ -24,6 +24,13 @@ inline comment) when it's done.
 ## Links (`links` in `content.js`)
 
 - [ ] RSVP Google Form URL (`rsvpForm`, optionally `rsvpFormEmbed`). **Decision: use Google Forms for now**, not a custom backend.
+- [ ] Public guest list (`guestListCsv`). Code is in place; it stays hidden until the link is set.
+      Form questions: Name(s); Will you be joining us? (Yes, I'll be there / Sorry, I can't make it);
+      Number in your party; Show my name on the public guest list? (Yes / No).
+      In the responses Sheet, add a tab "Guest list" with in A1:
+      `=QUERY('Form Responses 1'!A:E, "select B, D where C starts with 'Yes' and E starts with 'Yes'", 1)`
+      then File > Share > Publish to web > that tab only > CSV, and paste the URL into `guestListCsv`.
+      Only names + party size are public; emails and messages stay private.
 - [ ] Google Photos shared album (`googlePhotosAlbum`).
 - [ ] UUCM online donation link (`gofundme` key; any donation URL works).
 - [ ] Optional: memories form (`memoriesForm`), livestream (`livestream`).

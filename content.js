@@ -112,6 +112,8 @@ window.SITE = {
     rsvpFormEmbed: "",       // optional: Google Form "Embed HTML" src URL to show the form inline
     memoriesForm: "",        // optional: a second form for written memories
     livestream: "",          // optional: link for those who can't attend
+    guestListCsv: "",        // optional: public "Who's coming" list. Google Sheet tab of opted-in
+                             // names, published via File > Share > Publish to web > CSV. See TODO.md.
   },
 
   // Deadline shown next to the RSVP button, or "" to hide.

@@ -177,6 +177,13 @@ button { font: inherit; }
 .section-title { font-size: clamp(2.1rem, 4.5vw, 3.2rem); text-align: center; color: var(--ink); }
 .section-lede { text-align: center; max-width: 640px; margin: 0 auto 2.5rem; font-size: 1.1rem; color: var(--ink-soft); }
 .section-note { text-align: center; color: var(--muted); font-size: .95rem; margin-top: 2rem; }
+.guest-list { margin-top: 3rem; padding-top: 2.5rem; border-top: 1px solid var(--line); }
+.guest-list-title { font-family: var(--serif); font-weight: 500; font-size: 1.75rem; margin: 0 0 .25rem; color: var(--ink); }
+.guest-list-count { color: var(--ink-soft); margin: 0 0 1.5rem; }
+.guest-list-names { list-style: none; padding: 0; margin: 0; display: flex; flex-wrap: wrap; justify-content: center; gap: .5rem; }
+.guest-list-names li { background: var(--sage-pale); color: var(--sage-deep); border-radius: 999px; padding: .35rem 1rem; font-size: .95rem; }
+.guest-plus { color: var(--muted); font-size: .85em; }
+.guest-list .section-note { margin-top: 1.5rem; font-size: .85rem; }
 .prose { color: var(--ink-soft); }
 .prose p { margin-bottom: 1.25em; }
 .prose p:first-child::first-letter {

@@ -256,22 +256,9 @@
     });
   }
 
-  /* ------------------------------------------------ share photos -- */
-  const share = $("#share-actions");
-  if (linkOK(L.googlePhotosAlbum)) {
-    share.innerHTML = `<a class="btn btn-primary" href="${esc(L.googlePhotosAlbum)}" target="_blank" rel="noopener">Open the Shared Album</a>`;
-  } else {
-    share.innerHTML = `<span class="btn btn-primary is-disabled" aria-disabled="true">Shared Album — Link Coming Soon</span>`;
-  }
+  /* ---------------------------------------------------- memories -- */
   const M = S.memories || {};
   const memoriesOn = linkOK(M.endpoint);
-  if (memoriesOn) {
-    const n = $("#memories-note");
-    n.innerHTML = `Have a story or a video too? <a href="#memories">Share a memory</a> with the family.`;
-    n.hidden = false;
-  }
-
-  /* ---------------------------------------------------- memories -- */
   const memBody = $("#memories-body");
   if (memBody && !memoriesOn) {
     memBody.innerHTML = `<div class="placeholder">Memory sharing opens soon.<br><small>Family: set <code>memories.endpoint</code> in <code>content.js</code> once the Worker is deployed (see <code>worker/README.md</code>).</small></div>`;

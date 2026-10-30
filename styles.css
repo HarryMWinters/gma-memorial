@@ -329,8 +329,6 @@ button { font: inherit; }
 .btn.is-disabled { opacity: .55; cursor: not-allowed; pointer-events: none; }
 .btn svg { width: 16px; height: 16px; fill: currentColor; }
 .cta-row { display: flex; flex-wrap: wrap; gap: .9rem; justify-content: center; }
-
-.section-share { background: var(--sage-pale) !important; }
 .section-donate { background: var(--gold-pale) !important; }
 
 .form-embed {

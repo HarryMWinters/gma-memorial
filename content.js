@@ -106,7 +106,6 @@ window.SITE = {
   // Paste the real URLs between the quotes. Empty = placeholder shown.
   links: {
     // TODO: fill in all links below (RSVP uses Google Forms for now).
-    googlePhotosAlbum: "",   // shared album where guests can add photos
     donate: "https://secure.myvanco.com/L-ZFZ1/campaign/C-1408Z", // UUCM online giving (button reads "Give in Her Memory")
     rsvpForm: "",            // Google Form URL (the "Send" > link one)
     rsvpFormEmbed: "",       // optional: Google Form "Embed HTML" src URL to show the form inline

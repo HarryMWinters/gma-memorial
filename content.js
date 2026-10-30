@@ -120,8 +120,8 @@ window.SITE = {
   // Backend lives in worker/ (see worker/README.md). Leave endpoint "" to show
   // a "coming soon" placeholder instead of the form.
   memories: {
-    endpoint: "",          // TODO: deployed Worker URL, e.g. "https://gma-memorial-memories.<account>.workers.dev/memories"
-    turnstileSiteKey: "",  // TODO: Cloudflare Turnstile site key (spam check)
+    endpoint: "https://gma-memorial-memories.marilynwinters.workers.dev/memories",
+    turnstileSiteKey: "0x4AAAAAAFsFgU-S2h1WKQv2",  // Cloudflare Turnstile site key (spam check)
     maxFiles: 10,          // keep in sync with MAX_FILES in worker/wrangler.toml
     maxFileMB: 1024,       // keep in sync with MAX_FILE_MB
   },

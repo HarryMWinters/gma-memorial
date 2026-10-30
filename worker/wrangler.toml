@@ -4,7 +4,7 @@ compatibility_date = "2025-06-01"
 
 [vars]
 # Sites allowed to submit (comma-separated, no trailing slash).
-ALLOWED_ORIGINS = "https://harrymwinters.github.io,http://localhost:8000"
+ALLOWED_ORIGINS = "https://marilynwinters.com,https://www.marilynwinters.com,https://harrymwinters.github.io,http://localhost:8000"
 # Printed by `npm run google-setup`. TODO: fill these in.
 DRIVE_FOLDER_ID = ""
 SHEET_ID = ""

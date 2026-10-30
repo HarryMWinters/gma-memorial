@@ -53,13 +53,13 @@ else in that Google account.
 ### 3. Cloudflare: Turnstile (spam check)
 
 1. Sign up / log in at <https://dash.cloudflare.com/> (free plan is fine).
-2. **Turnstile → Add widget**. Hostnames: `harrymwinters.github.io` (and `localhost` for testing).
+2. **Turnstile → Add widget**. Hostnames: `marilynwinters.com` (and `localhost` for testing).
    Mode: **Managed**. Copy the **site key** and **secret key**.
 
 ### 4. Deploy the Worker
 
 1. Put `DRIVE_FOLDER_ID` and `SHEET_ID` into `wrangler.toml`. These are IDs, not secrets, so they're fine to commit.
-2. If the site uses a custom domain, add it to `ALLOWED_ORIGINS` in `wrangler.toml`.
+2. `ALLOWED_ORIGINS` in `wrangler.toml` already includes marilynwinters.com. Add any other domain the site is served from.
 3. Then:
 
 ```powershell

@@ -36,13 +36,8 @@ inline comment) when it's done.
 
 ## Memories form (`worker/`, `memories` in `content.js`)
 
-Code is done and tested with Google mocked. Remaining is setup. Follow `worker/README.md`:
+Setup is done (see `worker/README.md`). Worker: `https://gma-memorial-memories.marilynwinters.workers.dev`.
 
-- [ ] Google Cloud project + OAuth client (Desktop app). Consent screen **In production** (Testing mode expires the token in 7 days).
-- [ ] Run `npm run google-setup` with the family Google account; put `DRIVE_FOLDER_ID` / `SHEET_ID` in `worker/wrangler.toml`.
-- [ ] Cloudflare Turnstile widget for `marilynwinters.com`.
-- [ ] `wrangler secret put` x4, `wrangler deploy`.
-- [ ] Set `memories.endpoint` and `memories.turnstileSiteKey` in `content.js`.
 - [ ] **Live test with a real photo and a phone video.** The browser-to-Drive upload (resumable session + CORS) can't be tested without real Google.
 - [ ] Optional: decide whether the Google Photos shared album is still needed now that the form takes photos.
 - [ ] Optional, later: show selected memories on the site (needs a family review step first).
@@ -79,3 +74,4 @@ Code is done and tested with Google mocked. Remaining is setup. Follow `worker/R
 - [x] Service address confirmed: 12582 Squirrel Creek Rd, Grass Valley, CA 95945.
 - [x] Memories form built: custom form on the site + Cloudflare Worker -> Google Sheet + Drive folder (no guest sign-in).
 - [x] Custom domain marilynwinters.com: og tags and Worker ALLOWED_ORIGINS updated.
+- [x] Memories backend set up: Google OAuth app in production, Drive folder + Sheet created, Turnstile widget, Worker secrets set and deployed, `memories.endpoint` / `turnstileSiteKey` set.

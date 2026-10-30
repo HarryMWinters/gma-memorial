@@ -5,9 +5,9 @@ compatibility_date = "2025-06-01"
 [vars]
 # Sites allowed to submit (comma-separated, no trailing slash).
 ALLOWED_ORIGINS = "https://marilynwinters.com,https://www.marilynwinters.com,https://harrymwinters.github.io,http://localhost:8000"
-# Printed by `npm run google-setup`. TODO: fill these in.
-DRIVE_FOLDER_ID = ""
-SHEET_ID = ""
+# Printed by `npm run google-setup`.
+DRIVE_FOLDER_ID = "1QyUyyS8hT0obnGpiQvWW7IzviPqMV26N"
+SHEET_ID = "1_iHdekGqKF-5Nk5LhhZVfRfX_P2AhfL4oi1ZzEzWpKU"
 MAX_FILES = "10"
 MAX_FILE_MB = "1024"
 

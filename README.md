@@ -1,7 +1,7 @@
 # In Memory of Dr. Marilyn Winters
 
 A static memorial website for Marilyn's memorial weekend: her story, the schedule,
-travel and lodging, photos, a shared photo album, RSVP, and a memorial fund.
+travel and lodging, photos, a form for sharing memories, RSVP, and a memorial fund.
 
 **Open work is tracked in [`TODO.md`](TODO.md).**
 
@@ -17,7 +17,6 @@ Everything you'd want to change is in **`content.js`**:
 | Add / change events                   | `events`                              |
 | Hotels, airports, parking             | `travel`                              |
 | Add photos to the gallery             | drop files in `images/`, list in `gallery` |
-| Google Photos album link              | `links.googlePhotosAlbum`             |
 | Donation link                         | `links.donate`                        |
 | RSVP Google Form                      | `links.rsvpForm` (and optionally `links.rsvpFormEmbed`) |
 | Livestream link                       | `links.livestream`                    |

@@ -31,7 +31,6 @@ inline comment) when it's done.
       `=QUERY('Form Responses 1'!A:E, "select B, D where C starts with 'Yes' and E starts with 'Yes'", 1)`
       then File > Share > Publish to web > that tab only > CSV, and paste the URL into `guestListCsv`.
       Only names + party size are public; emails and messages stay private.
-- [ ] Google Photos shared album (`googlePhotosAlbum`).
 - [ ] Optional: livestream (`livestream`).
 
 ## Memories form (`worker/`, `memories` in `content.js`)
@@ -39,7 +38,6 @@ inline comment) when it's done.
 Setup is done (see `worker/README.md`). Worker: `https://gma-memorial-memories.marilynwinters.workers.dev`.
 
 - [ ] **Live test with a real photo and a phone video.** The browser-to-Drive upload (resumable session + CORS) can't be tested without real Google.
-- [ ] Optional: decide whether the Google Photos shared album is still needed now that the form takes photos.
 - [ ] Optional, later: show selected memories on the site (needs a family review step first).
 
 ## Travel
@@ -75,3 +73,4 @@ Setup is done (see `worker/README.md`). Worker: `https://gma-memorial-memories.m
 - [x] Memories form built: custom form on the site + Cloudflare Worker -> Google Sheet + Drive folder (no guest sign-in).
 - [x] Custom domain marilynwinters.com: og tags and Worker ALLOWED_ORIGINS updated.
 - [x] Memories backend set up: Google OAuth app in production, Drive folder + Sheet created, Turnstile widget, Worker secrets set and deployed, `memories.endpoint` / `turnstileSiteKey` set.
+- [x] Dropped the Google Photos shared album: the Share a Memory form takes photos and videos.

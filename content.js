@@ -107,13 +107,23 @@ window.SITE = {
   links: {
     // TODO: fill in all links below (RSVP uses Google Forms for now).
     googlePhotosAlbum: "",   // shared album where guests can add photos
-    gofundme: "",            // donation page. TODO: UUCM's online giving URL (button reads "Give in Her Memory")
+    donate: "https://secure.myvanco.com/L-ZFZ1/campaign/C-1408Z", // UUCM online giving (button reads "Give in Her Memory")
     rsvpForm: "",            // Google Form URL (the "Send" > link one)
     rsvpFormEmbed: "",       // optional: Google Form "Embed HTML" src URL to show the form inline
-    memoriesForm: "",        // optional: a second form for written memories
     livestream: "",          // optional: link for those who can't attend
     guestListCsv: "",        // optional: public "Who's coming" list. Google Sheet tab of opted-in
                              // names, published via File > Share > Publish to web > CSV. See TODO.md.
+  },
+
+  // ---------------------------------------------------------- Memories ---
+  // Guest memory form: name, email, a written memory, photos/videos.
+  // Backend lives in worker/ (see worker/README.md). Leave endpoint "" to show
+  // a "coming soon" placeholder instead of the form.
+  memories: {
+    endpoint: "",          // TODO: deployed Worker URL, e.g. "https://gma-memorial-memories.<account>.workers.dev/memories"
+    turnstileSiteKey: "",  // TODO: Cloudflare Turnstile site key (spam check)
+    maxFiles: 10,          // keep in sync with MAX_FILES in worker/wrangler.toml
+    maxFileMB: 1024,       // keep in sync with MAX_FILE_MB
   },
 
   // Deadline shown next to the RSVP button, or "" to hide.

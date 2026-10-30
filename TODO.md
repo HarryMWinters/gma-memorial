@@ -32,8 +32,20 @@ inline comment) when it's done.
       then File > Share > Publish to web > that tab only > CSV, and paste the URL into `guestListCsv`.
       Only names + party size are public; emails and messages stay private.
 - [ ] Google Photos shared album (`googlePhotosAlbum`).
-- [ ] UUCM online donation link (`gofundme` key; any donation URL works).
-- [ ] Optional: memories form (`memoriesForm`), livestream (`livestream`).
+- [ ] Optional: livestream (`livestream`).
+
+## Memories form (`worker/`, `memories` in `content.js`)
+
+Code is done and tested with Google mocked. Remaining is setup. Follow `worker/README.md`:
+
+- [ ] Google Cloud project + OAuth client (Desktop app). Consent screen **In production** (Testing mode expires the token in 7 days).
+- [ ] Run `npm run google-setup` with the family Google account; put `DRIVE_FOLDER_ID` / `SHEET_ID` in `worker/wrangler.toml`.
+- [ ] Cloudflare Turnstile widget for `marilynwinters.com`.
+- [ ] `wrangler secret put` x4, `wrangler deploy`.
+- [ ] Set `memories.endpoint` and `memories.turnstileSiteKey` in `content.js`.
+- [ ] **Live test with a real photo and a phone video.** The browser-to-Drive upload (resumable session + CORS) can't be tested without real Google.
+- [ ] Optional: decide whether the Google Photos shared album is still needed now that the form takes photos.
+- [ ] Optional, later: show selected memories on the site (needs a family review step first).
 
 ## Travel
 
@@ -44,8 +56,7 @@ inline comment) when it's done.
 
 ## Technical
 
-- [ ] If a custom domain is added, update `og:url` / `og:image` in `index.html` (currently `harrymwinters.github.io/gma-memorial`).
-- [ ] GitHub Pages: set **Settings → Pages → Source: GitHub Actions**. Add `CNAME` if using a custom domain.
+- [ ] GitHub Pages: set **Settings → Pages → Source: GitHub Actions**. (CNAME for marilynwinters.com is in place.)
 - [ ] Optional: a single "add the whole weekend to calendar" `.ics` once there are multiple events.
 
 ## Done
@@ -63,4 +74,8 @@ inline comment) when it's done.
 - [x] Donations go to UUCM (Unitarian Universalist Community of the Mountains).
 - [x] SMF drive time ~1h10 (family-confirmed). RNO added as alternative (~1.5 h, estimate).
 - [x] Fixed `.ics` semicolon escaping.
-- [x] `og:image` / `og:url` now absolute (GitHub Pages URL).
+- [x] `og:image` / `og:url` now absolute.
+- [x] UUCM donation link wired to the "Give in Her Memory" button (`links.donate`).
+- [x] Service address confirmed: 12582 Squirrel Creek Rd, Grass Valley, CA 95945.
+- [x] Memories form built: custom form on the site + Cloudflare Worker -> Google Sheet + Drive folder (no guest sign-in).
+- [x] Custom domain marilynwinters.com: og tags and Worker ALLOWED_ORIGINS updated.

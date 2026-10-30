@@ -18,9 +18,10 @@ Everything you'd want to change is in **`content.js`**:
 | Hotels, airports, parking             | `travel`                              |
 | Add photos to the gallery             | drop files in `images/`, list in `gallery` |
 | Google Photos album link              | `links.googlePhotosAlbum`             |
-| GoFundMe link                         | `links.gofundme`                      |
+| Donation link                         | `links.donate`                        |
 | RSVP Google Form                      | `links.rsvpForm` (and optionally `links.rsvpFormEmbed`) |
 | Livestream link                       | `links.livestream`                    |
+| Memory form (backend URL, spam key)   | `memories` (setup: `worker/README.md`) |
 | Contact info in the footer            | `contact`                             |
 
 Anything left as `""` or `[]` shows a tasteful "coming soon" placeholder,

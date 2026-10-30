@@ -1,0 +1,14 @@
+{
+  "name": "gma-memorial-memories",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "wrangler dev",
+    "deploy": "wrangler deploy",
+    "test": "node --test test/*.test.mjs",
+    "google-setup": "node scripts/google-setup.mjs"
+  },
+  "devDependencies": {
+    "wrangler": "^4.0.0"
+  }
+}

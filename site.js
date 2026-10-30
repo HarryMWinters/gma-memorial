@@ -263,10 +263,177 @@
   } else {
     share.innerHTML = `<span class="btn btn-primary is-disabled" aria-disabled="true">Shared Album — Link Coming Soon</span>`;
   }
-  if (linkOK(L.memoriesForm)) {
+  const M = S.memories || {};
+  const memoriesOn = linkOK(M.endpoint);
+  if (memoriesOn) {
     const n = $("#memories-note");
-    n.innerHTML = `Prefer words to pictures? <a href="${esc(L.memoriesForm)}" target="_blank" rel="noopener">Share a memory or story</a> and we'll collect them for the family.`;
+    n.innerHTML = `Have a story or a video too? <a href="#memories">Share a memory</a> with the family.`;
     n.hidden = false;
+  }
+
+  /* ---------------------------------------------------- memories -- */
+  const memBody = $("#memories-body");
+  if (memBody && !memoriesOn) {
+    memBody.innerHTML = `<div class="placeholder">Memory sharing opens soon.<br><small>Family: set <code>memories.endpoint</code> in <code>content.js</code> once the Worker is deployed (see <code>worker/README.md</code>).</small></div>`;
+  } else if (memBody) initMemories(memBody);
+
+  function fmtSize(b) {
+    return b >= 1073741824 ? `${(b / 1073741824).toFixed(1)} GB` : b >= 1048576 ? `${(b / 1048576).toFixed(1)} MB` : `${Math.max(1, Math.round(b / 1024))} KB`;
+  }
+
+  function initMemories(root) {
+    const maxFiles = Number(M.maxFiles) || 10;
+    const maxMB = Number(M.maxFileMB) || 1024;
+    root.innerHTML = `
+      <form class="memory-form" novalidate>
+        <div class="field-row">
+          <div class="field"><label for="m-name">Your name</label>
+            <input id="m-name" name="name" type="text" maxlength="200" autocomplete="name" required></div>
+          <div class="field"><label for="m-email">Your email</label>
+            <input id="m-email" name="email" type="email" maxlength="254" autocomplete="email" required>
+            <small>Only the family will see this.</small></div>
+        </div>
+        <div class="field"><label for="m-memory">Your memory</label>
+          <textarea id="m-memory" name="memory" rows="7" maxlength="20000" placeholder="Share a story, a moment, or what she meant to you…"></textarea></div>
+        <div class="field"><span class="field-label" id="m-files-label">Photos or videos <span class="optional">(optional)</span></span>
+          <label class="dropzone" for="m-files">
+            <input id="m-files" type="file" multiple accept="image/*,video/*" aria-labelledby="m-files-label">
+            <span class="dropzone-cta">Choose photos or videos</span>
+            <small>or drag them here · up to ${maxFiles} files, ${maxMB >= 1024 ? maxMB / 1024 + " GB" : maxMB + " MB"} each</small>
+          </label>
+          <ul class="file-list" aria-live="polite"></ul></div>
+        <div class="hp" aria-hidden="true"><label>Website <input name="website" type="text" tabindex="-1" autocomplete="off"></label></div>
+        <div class="ts-widget"></div>
+        <p class="form-error" role="alert" hidden></p>
+        <div class="cta-row"><button class="btn btn-primary" type="submit">Share Memory</button></div>
+      </form>
+      <div class="memory-thanks" hidden tabindex="-1">
+        <p class="memory-thanks-title">Thank you.</p>
+        <p class="memory-thanks-text"></p>
+        <button class="btn btn-outline btn-sm" type="button">Share another memory</button>
+      </div>`;
+
+    const form = $("form", root), list = $(".file-list", root), input = $("#m-files", root);
+    const err = $(".form-error", root), btn = $("button[type=submit]", root);
+    const thanks = $(".memory-thanks", root), drop = $(".dropzone", root);
+    let files = [], busy = false, tsToken = "", tsId = null;
+
+    // Cloudflare Turnstile spam check (skipped when no site key is configured).
+    if (has(M.turnstileSiteKey)) {
+      window.__memTsReady = () => {
+        tsId = window.turnstile.render($(".ts-widget", root), {
+          sitekey: M.turnstileSiteKey,
+          callback: (t) => (tsToken = t),
+          "expired-callback": () => (tsToken = ""),
+          "error-callback": () => (tsToken = ""),
+        });
+      };
+      const s = document.createElement("script");
+      s.src = "https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit&onload=__memTsReady";
+      s.async = true; s.defer = true;
+      document.head.appendChild(s);
+    }
+
+    const showError = (msg) => { err.textContent = msg; err.hidden = !msg; };
+    const renderList = () => {
+      list.innerHTML = files.map((f, i) => `
+        <li class="file-item" data-i="${i}">
+          <span class="file-name">${esc(f.name)}</span><span class="file-size">${fmtSize(f.size)}</span>
+          <progress max="100" value="0" hidden></progress><span class="file-status"></span>
+          <button type="button" class="file-remove" aria-label="Remove ${esc(f.name)}" ${busy ? "hidden" : ""}>&times;</button>
+        </li>`).join("");
+    };
+    const addFiles = (incoming) => {
+      showError("");
+      for (const f of incoming) {
+        if (!/^(image|video)\//.test(f.type)) { showError(`"${f.name}" isn't a photo or video.`); continue; }
+        if (f.size > maxMB * 1048576) { showError(`"${f.name}" is too large (limit ${maxMB >= 1024 ? maxMB / 1024 + " GB" : maxMB + " MB"}).`); continue; }
+        if (files.length >= maxFiles) { showError(`You can add up to ${maxFiles} files at a time.`); break; }
+        if (!files.some((x) => x.name === f.name && x.size === f.size)) files.push(f);
+      }
+      renderList();
+    };
+    input.addEventListener("change", () => { addFiles(Array.from(input.files)); input.value = ""; });
+    list.addEventListener("click", (e) => {
+      const b = e.target.closest(".file-remove");
+      if (!b || busy) return;
+      files.splice(+b.closest("li").dataset.i, 1); renderList();
+    });
+    ["dragenter", "dragover"].forEach((t) => drop.addEventListener(t, (e) => { e.preventDefault(); drop.classList.add("is-over"); }));
+    ["dragleave", "drop"].forEach((t) => drop.addEventListener(t, (e) => { e.preventDefault(); drop.classList.remove("is-over"); }));
+    drop.addEventListener("drop", (e) => { if (!busy) addFiles(Array.from(e.dataTransfer.files || [])); });
+    window.addEventListener("beforeunload", (e) => { if (busy) { e.preventDefault(); e.returnValue = ""; } });
+
+    const uploadOne = (url, file, li) => new Promise((resolve) => {
+      const bar = $("progress", li), status = $(".file-status", li);
+      bar.hidden = false; status.textContent = "";
+      const xhr = new XMLHttpRequest();
+      xhr.open("PUT", url);
+      xhr.setRequestHeader("Content-Type", file.type);
+      xhr.upload.onprogress = (e) => { if (e.lengthComputable) bar.value = Math.round((e.loaded / e.total) * 100); };
+      xhr.onload = () => {
+        const ok = xhr.status >= 200 && xhr.status < 300;
+        bar.value = ok ? 100 : bar.value; status.textContent = ok ? "Uploaded" : "Failed";
+        li.classList.add(ok ? "is-done" : "is-failed"); resolve(ok);
+      };
+      xhr.onerror = () => { status.textContent = "Failed"; li.classList.add("is-failed"); resolve(false); };
+      xhr.send(file);
+    });
+
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      if (busy) return;
+      showError("");
+      const fd = new FormData(form);
+      const payload = {
+        name: String(fd.get("name") || "").trim(),
+        email: String(fd.get("email") || "").trim(),
+        memory: String(fd.get("memory") || "").trim(),
+        website: String(fd.get("website") || ""),
+        files: files.map((f) => ({ name: f.name, type: f.type, size: f.size })),
+        turnstileToken: tsToken,
+      };
+      if (!payload.name) return showError("Please enter your name."), $("#m-name", root).focus();
+      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(payload.email)) return showError("Please enter a valid email address."), $("#m-email", root).focus();
+      if (!payload.memory && !files.length) return showError("Please write a memory or add a photo or video."), $("#m-memory", root).focus();
+      if (has(M.turnstileSiteKey) && !tsToken) return showError("Please complete the spam check below the form.");
+
+      busy = true; btn.disabled = true; btn.textContent = "Saving…"; renderList();
+      $$("input, textarea", form).forEach((n) => (n.disabled = true));
+      let data;
+      try {
+        const r = await fetch(M.endpoint, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(payload) });
+        data = await r.json().catch(() => ({}));
+        if (!r.ok || !data.ok) throw new Error(data.error || "Something went wrong. Please try again.");
+      } catch (ex) {
+        busy = false; btn.disabled = false; btn.textContent = "Share Memory";
+        $$("input, textarea", form).forEach((n) => (n.disabled = false)); renderList();
+        if (tsId !== null && window.turnstile) { window.turnstile.reset(tsId); tsToken = ""; }
+        return showError(ex.message && !/fetch/i.test(ex.message) ? ex.message : "We couldn't reach the server. Please check your connection and try again.");
+      }
+
+      let failed = 0;
+      const uploads = data.uploads || [];
+      if (uploads.length) btn.textContent = "Uploading…";
+      for (let i = 0; i < uploads.length; i++) {
+        const li = $(`.file-item[data-i="${i}"]`, list);
+        if (!(await uploadOne(uploads[i].url, files[i], li))) failed++;
+      }
+      busy = false;
+
+      $(".memory-thanks-text", thanks).textContent = failed
+        ? `Your memory was saved, but ${failed} of ${uploads.length} file${uploads.length > 1 ? "s" : ""} didn't upload. Please try sharing ${failed > 1 ? "them" : "it"} again.`
+        : "Your memory has been shared with the family. It means a great deal.";
+      form.hidden = true; thanks.hidden = false; thanks.focus();
+    });
+
+    $("button", thanks).addEventListener("click", () => {
+      form.reset(); files = []; renderList(); showError("");
+      $$("input, textarea", form).forEach((n) => (n.disabled = false));
+      btn.disabled = false; btn.textContent = "Share Memory";
+      if (tsId !== null && window.turnstile) { window.turnstile.reset(tsId); tsToken = ""; }
+      thanks.hidden = true; form.hidden = false; $("#m-name", root).focus();
+    });
   }
 
   /* -------------------------------------------------------- rsvp -- */
@@ -333,8 +500,9 @@
   const D = S.donate || {};
   if (has(D.heading)) $("#donate-eyebrow").textContent = D.heading;
   $("#donate-text").textContent = D.text || "";
-  $("#donate-actions").innerHTML = linkOK(L.gofundme)
-    ? `<a class="btn btn-gold" href="${esc(L.gofundme)}" target="_blank" rel="noopener">Give in Her Memory</a>`
+  const donateURL = L.donate || L.gofundme; // "gofundme" kept as a legacy key
+  $("#donate-actions").innerHTML = linkOK(donateURL)
+    ? `<a class="btn btn-gold" href="${esc(donateURL)}" target="_blank" rel="noopener">Give in Her Memory</a>`
     : `<span class="btn btn-gold is-disabled" aria-disabled="true">Donation Link Coming Soon</span>`;
 
   /* ------------------------------------------------------ footer -- */

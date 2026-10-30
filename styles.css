@@ -186,6 +186,7 @@ button { font: inherit; }
 .guest-list .section-note { margin-top: 1.5rem; font-size: .85rem; }
 .prose { color: var(--ink-soft); }
 .prose p { margin-bottom: 1.25em; }
+.prose h2 { font-size: 1.6rem; margin: 2rem 0 .5rem; }
 .prose p:first-child::first-letter {
   font-family: var(--serif); font-size: 3.3em; float: left; line-height: .85;
   padding: .08em .12em 0 0; color: var(--sage-deep);

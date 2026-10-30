@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Privacy · Dr. Marilyn Winters</title>
+  <meta name="description" content="How the Dr. Marilyn Winters memorial site handles what you share.">
+  <link rel="icon" href="images/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Nunito+Sans:ital,wght@0,300;0,400;0,600;1,300&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<main>
+  <section class="section">
+    <div class="container narrow">
+      <p class="eyebrow">Dr. Marilyn Winters Memorial</p>
+      <h1 class="section-title">Privacy</h1>
+      <div class="ornament" aria-hidden="true"></div>
+      <p class="section-lede">This site is run by Marilyn's family. Here is what happens to anything you share through it.</p>
+
+      <div class="prose">
+        <h2>Share a Memory</h2>
+        <p>When you share a memory, we receive your name, your email address, what you write, and any photos or videos you add. They are saved to the family's own Google Drive and a private Google Sheet. Only the family can see them. Your email address is never shown on the site.</p>
+        <p>The form is handled by a small Cloudflare Worker, and Cloudflare Turnstile checks that a person, not a bot, is sending it. Photos and videos upload straight from your browser to the family's Google Drive.</p>
+
+        <h2>Google account access</h2>
+        <p>The family connected this site to their own Google account so memories can be saved there. That access is limited to the folder and Sheet the site created. It cannot see anything else in the account, and it is not used to access the Google account of anyone who visits or shares a memory.</p>
+
+        <h2>RSVPs</h2>
+        <p>RSVPs go through Google Forms. If you choose to be listed under "Who's Coming," your name appears on this site. Otherwise your RSVP is seen only by the family.</p>
+
+        <h2>Everything else</h2>
+        <p>This site uses no analytics or advertising and sets no cookies of its own. It is hosted on GitHub Pages, and its fonts come from Google Fonts. Those services may log basic technical details, such as your IP address, under their own privacy policies.</p>
+        <p>We don't sell or share what you send us. It is kept to remember Marilyn.</p>
+
+        <h2>Changes or removal</h2>
+        <!-- TODO: add the family contact email once contact.email is set in content.js. -->
+        <p>To change or remove something you shared, please contact the family.</p>
+      </div>
+
+      <p class="section-note"><a href="./">Back to the memorial</a></p>
+    </div>
+  </section>
+</main>
+
+</body>
+</html>

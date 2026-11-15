@@ -97,9 +97,15 @@
   const tz = S.timezone || "";
   const pad = (n) => String(n).padStart(2, "0");
   function icsStamp(ymd, hm) { return `${ymd.replace(/-/g, "")}T${(hm || "00:00").replace(":", "")}00`; }
+  // No end time yet: calendar entries run one hour from the start.
+  function endOf(e) {
+    if (e.end || !e.start) return e.end || e.start;
+    const [h, m] = e.start.split(":").map(Number);
+    return `${pad(Math.min(h + 1, 23))}:${pad(h + 1 > 23 ? 59 : m)}`;
+  }
   function gcalLink(e) {
     if (!parseDate(e.date)) return "";
-    const end = e.end || e.start;
+    const end = endOf(e);
     const u = new URL("https://calendar.google.com/calendar/render");
     u.searchParams.set("action", "TEMPLATE");
     u.searchParams.set("text", `${e.title} · ${P.name || ""}`.trim());
@@ -120,7 +126,7 @@
       `UID:${e.date}-${e.start}-${(e.title || "").replace(/\W+/g, "")}@memorial`,
       `DTSTAMP:${stamp}`,
       `DTSTART${tzp}:${icsStamp(e.date, e.start)}`,
-      `DTEND${tzp}:${icsStamp(e.date, e.end || e.start)}`,
+      `DTEND${tzp}:${icsStamp(e.date, endOf(e))}`,
       `SUMMARY:${fold(`${e.title} · ${P.name || ""}`.trim())}`,
       `LOCATION:${fold([e.venue, e.address].filter(Boolean).join(", "))}`,
       `DESCRIPTION:${fold([e.description, e.notes].filter(Boolean).join("\n"))}`,
@@ -176,6 +182,13 @@
       });
     }
   }
+  const SN = S.scheduleNote || {};
+  if (has(SN.text)) {
+    $("#schedule-note-heading").textContent = SN.heading || "";
+    $("#schedule-note-heading").hidden = !has(SN.heading);
+    $("#schedule-note-text").textContent = SN.text;
+    $("#schedule-note").hidden = false;
+  }
   const L = S.links || {};
   if (linkOK(L.livestream)) {
     const n = $("#livestream-note");
@@ -204,6 +217,15 @@
         </div>
       </li>`).join("")
     : `<li class="placeholder">Hotel recommendations coming soon.</li>`;
+
+  const R = T.rentals || {};
+  if (has(R.text)) {
+    const links = (R.links || []).filter((l) => linkOK(l.url))
+      .map((l) => `<a href="${esc(l.url)}" target="_blank" rel="noopener">${esc(l.label || l.url)}</a>`);
+    const r = $("#rentals");
+    r.innerHTML = `${esc(R.text)}${links.length ? ` Search on ${links.join(" or ")}.` : ""}`;
+    r.hidden = false;
+  }
 
   /* ----------------------------------------------------- gallery -- */
   const grid = $("#gallery-grid");
@@ -429,6 +451,12 @@
   if (linkOK(L.rsvpFormEmbed)) {
     rsvp.innerHTML = `<div class="form-embed"><iframe src="${esc(L.rsvpFormEmbed)}" title="RSVP form" loading="lazy">Loading…</iframe></div>
       <p class="section-note">Trouble with the form? <a href="${esc(L.rsvpForm || L.rsvpFormEmbed)}" target="_blank" rel="noopener">Open it in a new tab</a>.</p>`;
+    // The form is taller than the screen. After submit, Google swaps in a short
+    // "response recorded" page at the top of the frame, so bring that into view.
+    let loads = 0;
+    $("iframe", rsvp).addEventListener("load", () => {
+      if (++loads > 1) $("#rsvp").scrollIntoView({ behavior: "smooth" });
+    });
   } else if (linkOK(L.rsvpForm)) {
     rsvp.innerHTML = `<div class="cta-row"><a class="btn btn-primary" href="${esc(L.rsvpForm)}" target="_blank" rel="noopener">RSVP Now</a></div>`;
   } else {

@@ -4,29 +4,28 @@ Open work for the memorial site. Inline `TODO` comments in `content.js`,
 `site.js`, and `index.html` point back to these items. Remove an item (and its
 inline comment) when it's done.
 
-## Unvalidated: confirm before sharing the site widely
+## Schedule
 
-- [ ] **Service date.** Set to **Saturday, May 1, 2027**, but this has NOT been
-      validated. It may be Sunday, May 2. Confirm with the family and the venue,
-      then remove the "Date and time to be confirmed." note from the event in
-      `content.js`.
-- [ ] **Service start/end time.** Blank for now. The page shows "Time to be
-      announced" and hides the calendar buttons until `start` is set.
+- [ ] **Service end time.** Blank for now; the page shows "2 PM" and calendar entries assume one hour.
+- [ ] **Friday night dinner** (Apr 30, the evening before the service): venue, address and time are blank.
+      Fill them in on the event in `content.js` and remove its "Location and time to be announced." note.
 
 ## Content
 
 - [ ] Obituary / Her Story (`story`).
 - [ ] Photos: hero, portrait and 3 gallery photos added. Add captions and more gallery photos.
 - [ ] Event description: will there be a reception or luncheon after the service?
-- [ ] Other weekend events (gathering the night before, family brunch, etc.), if any.
+- [ ] Other weekend events (family brunch, etc.), if any.
 - [ ] Family contact email for the footer (`contact.email`); email only, no phone. Isaac may have set one up.
 
 ## Links (`links` in `content.js`)
 
-- [ ] RSVP Google Form URL (`rsvpForm`, optionally `rsvpFormEmbed`). **Decision: use Google Forms for now**, not a custom backend.
+- [ ] **Submit one real RSVP on a phone** to check the embedded form: after Submit the page should scroll back up to the "response recorded" message. Delete the test row from the Sheet afterwards.
+      If the form's questions change, re-check the iframe heights in `styles.css` (`.form-embed iframe`).
 - [ ] Public guest list (`guestListCsv`). Code is in place; it stays hidden until the link is set.
-      Form questions: Name(s); Will you be joining us? (Yes, I'll be there / Sorry, I can't make it);
-      Number in your party; Show my name on the public guest list? (Yes / No).
+      The live form has no "Show my name on the public guest list? (Yes / No)" question yet; add it first.
+      The formula below assumes columns B = name, C = attending, D = party size, E = opt-in; the live form
+      has Email in C, so adjust the columns to the real Sheet.
       In the responses Sheet, add a tab "Guest list" with in A1:
       `=QUERY('Form Responses 1'!A:E, "select B, D where C starts with 'Yes' and E starts with 'Yes'", 1)`
       then File > Share > Publish to web > that tab only > CSV, and paste the URL into `guestListCsv`.
@@ -59,7 +58,7 @@ Setup is done (see `worker/README.md`). Worker: `https://gma-memorial-memories.m
 - [x] Dress code: smart casual.
 - [x] Parking available at the church.
 
-- [x] Event date set to 2027-05-01 (pending validation), timezone `America/Los_Angeles`.
+- [x] Service set to Saturday, May 1, 2027 at 2 PM, timezone `America/Los_Angeles`.
 - [x] Venue: Unitarian Universalist Community of the Mountains, 12582 Squirrel Creek Rd, Grass Valley, CA 95945.
 - [x] RSVP deadline: January 31, 2027 (90 days before May 1).
 - [x] Airport: Sacramento International (SMF).
@@ -74,3 +73,7 @@ Setup is done (see `worker/README.md`). Worker: `https://gma-memorial-memories.m
 - [x] Custom domain marilynwinters.com: og tags and Worker ALLOWED_ORIGINS updated.
 - [x] Memories backend set up: Google OAuth app in production, Drive folder + Sheet created, Turnstile widget, Worker secrets set and deployed, `memories.endpoint` / `turnstileSiteKey` set.
 - [x] Dropped the Google Photos shared album: the Share a Memory form takes photos and videos.
+- [x] RSVP wired to the Google Form, embedded inline (`links.rsvpFormEmbed`, with `links.rsvpForm` as the new-tab fallback): full name, email, attending, party size, dietary restrictions, message.
+- [x] Friday night dinner added to the schedule (details TBD) plus a "Come early, stay a while" note (`scheduleNote`).
+- [x] No dinner headcount needed: the RSVP form stays service-only.
+- [x] Airbnb and Vrbo flagged as lodging options under the hotels (`travel.rentals`).

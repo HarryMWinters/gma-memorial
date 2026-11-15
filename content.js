@@ -34,26 +34,38 @@ window.SITE = {
 
   // --------------------------------------------------------- Schedule ---
   // Dates must be YYYY-MM-DD and times HH:MM (24h) so the calendar buttons work.
-  // Leave start/end as "" until confirmed: the page shows "Time to be announced"
-  // and hides the add-to-calendar buttons. See TODO.md for open items.
+  // Leave start as "" until confirmed: the page shows "Time to be announced"
+  // and hides the add-to-calendar buttons. A blank end means a 1-hour calendar entry. See TODO.md for open items.
   timezone: "America/Los_Angeles",
   events: [
     {
+      title: "Friday Night Dinner",
+      // The evening before the service. Moves with the service date if that changes.
+      date: "2027-04-30",
+      start: "", // TODO: dinner time (HH:MM, 24h)
+      end: "",
+      venue: "",   // TODO: dinner venue
+      address: "", // TODO: dinner address
+      description: "Join the family for dinner the evening before the service: a chance to gather, catch up, and start sharing stories.",
+      notes: "Location and time to be announced.",
+    },
+    {
       title: "Celebration of Life",
-      // TODO(unvalidated): date NOT confirmed. It is either Sat May 1 or Sun May 2, 2027.
-      // Confirm with the family and the venue, then remove the notes line below.
       date: "2027-05-01",
-      start: "", // TODO: service start time (HH:MM, 24h)
-      end: "",   // TODO: service end time (HH:MM, 24h)
+      start: "14:00",
+      end: "",   // TODO: service end time (HH:MM, 24h). Calendar entries assume 1 hour until set.
       venue: "Unitarian Universalist Community of the Mountains",
       address: "12582 Squirrel Creek Rd, Grass Valley, CA 95945",
       description: "A service celebrating Marilyn's life.", // TODO: reception/luncheon after?
       dressCode: "Smart casual, though we suspect she'd quietly hand out marks for a great outfit.",
-      notes: "Date and time to be confirmed.",
     },
-    // TODO: add any other weekend events (gathering the night before, family
-    // brunch, etc.) once they're decided.
   ],
+
+  // Shown under the schedule. Set heading and text to "" to hide.
+  scheduleNote: {
+    heading: "Come early, stay a while",
+    text: "You are warmly welcome to arrive a few days early or stay on afterwards. The family will be around Grass Valley and would love the time together to reminisce, share stories, and honor Marilyn and all she meant to us.",
+  },
 
   // ------------------------------------------------- Travel & lodging ---
   travel: {
@@ -86,6 +98,14 @@ window.SITE = {
         url: "",
       },
     ],
+    // Short note shown under the hotels. Set text to "" to hide.
+    rentals: {
+      text: "Vacation rentals are a good option too, especially for families or longer stays. Look for places in Grass Valley or Nevada City.",
+      links: [
+        { label: "Airbnb", url: "https://www.airbnb.com/" },
+        { label: "Vrbo", url: "https://www.vrbo.com/" },
+      ],
+    },
     // TODO: confirm whether rideshare is reliable in the area.
     gettingAround: "A car is recommended for getting between Sacramento and Grass Valley. Parking is available at the church.",
     extra: "", // TODO (optional): weather in early May, local tips
@@ -107,8 +127,8 @@ window.SITE = {
   links: {
     // TODO: fill in all links below (RSVP uses Google Forms for now).
     donate: "https://secure.myvanco.com/L-ZFZ1/campaign/C-1408Z", // UUCM online giving (button reads "Give in Her Memory")
-    rsvpForm: "",            // Google Form URL (the "Send" > link one)
-    rsvpFormEmbed: "",       // optional: Google Form "Embed HTML" src URL to show the form inline
+    rsvpForm: "https://forms.gle/yedajqoPykdKxu6E7", // Google Form URL (the "Send" > link one)
+    rsvpFormEmbed: "https://docs.google.com/forms/d/e/1FAIpQLSe9wcr6blV7k53ipfreaNekvIlECsCf-fSyEubexMuHFNxHPg/viewform?embedded=true", // optional: Google Form "Embed HTML" src URL to show the form inline
     livestream: "",          // optional: link for those who can't attend
     guestListCsv: "",        // optional: public "Who's coming" list. Google Sheet tab of opted-in
                              // names, published via File > Share > Publish to web > CSV. See TODO.md.
